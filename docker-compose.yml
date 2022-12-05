@@ -16,7 +16,7 @@ services:
       - ./postgres:/var/lib/postgresql/data
 
   web:
-    image: pleroma:latest
+    image: ghcr.io/resmo/pleroma:main
     container_name: pleroma_web
     healthcheck:
       test:
@@ -27,8 +27,6 @@ services:
     restart: always
     ports:
       - '4000:4000'
-    build:
-      context: .
     volumes:
       - ./uploads:/var/lib/pleroma/uploads
       - ./static:/var/lib/pleroma/static

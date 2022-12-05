@@ -25,6 +25,8 @@ RUN cd pleroma && tar cvf pleroma.tar *
 
 FROM elixir:${IMAGE_VERSION}
 
+LABEL org.opencontainers.image.source https://github.com/resmo/pleroma-container
+
 ARG UID=1000
 ARG GID=1000
 ARG DATA=/var/lib/pleroma
