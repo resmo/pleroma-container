@@ -6,10 +6,21 @@
 
 ### Installation
 
-Copy and modify `docker-compose.yml`
+Copy and modify `docker-compose.yml`, then:
 
 ```
 docker-compose up
+```
+
+Setup the admin user (generates an URL to set password):
+
+```
+docker exec -ti pleroma_web ./bin/pleroma_ctl user new mynickname email@example.com --admin
+```
+
+Get a shell:
+```
+docker exec -ti pleroma_web /bin/ash
 ```
 
 ## Why
