@@ -39,7 +39,7 @@ RUN addgroup -g ${GID} pleroma \
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/main" >> /etc/apk/repositories \
     && apk update \
     && apk add postgresql-client \
-    exiftool imagemagick libmagic ffmpeg
+    exiftool imagemagick libmagic ffmpeg bash
 
 RUN mkdir -p /etc/pleroma \
     && mkdir -p ${DATA}/uploads \
@@ -50,11 +50,10 @@ WORKDIR ${DATA}
 COPY --from=builder /build/pleroma/pleroma.tar /tmp/pleroma.tar
 RUN tar xvf /tmp/pleroma.tar && rm /tmp/pleroma.tar && chown -R pleroma ${DATA}
 
-USER pleroma
-
 COPY ./entrypoint.sh /entrypoint.sh
 COPY ./config.exs /etc/pleroma/config.exs
 
+USER pleroma
 EXPOSE 4000
 
 ENTRYPOINT [ "/entrypoint.sh" ]
